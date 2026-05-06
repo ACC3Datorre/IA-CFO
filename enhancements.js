@@ -1,6 +1,5 @@
 /* ===================================================
    ENHANCEMENTS.JS — Versión Ejecutiva
-   Animaciones sutiles, sin elementos llamativos
    =================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   progressBar.className = 'scroll-progress';
   document.body.appendChild(progressBar);
 
-  /* ---------- 2) Botón "volver arriba" con SVG ---------- */
+  /* ---------- 2) Botón "volver arriba" ---------- */
   const backToTop = document.createElement('button');
   backToTop.className = 'back-to-top';
   backToTop.setAttribute('aria-label', 'Volver arriba');
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.body.appendChild(backToTop);
 
-  /* ---------- 3) Nav y referencias ---------- */
+  /* ---------- 3) Referencias ---------- */
   const nav = document.querySelector('nav');
   const sections = ['acto1', 'acto2', 'acto3', 'acto4']
     .map(id => document.getElementById(id))
@@ -36,20 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const pct = max > 0 ? (scrolled / max) * 100 : 0;
 
-        // Barra de progreso
         progressBar.style.width = pct + '%';
 
-        // Botón volver arriba
         if (scrolled > 500) backToTop.classList.add('visible');
         else backToTop.classList.remove('visible');
 
-        // Nav scrolled state
         if (nav) {
           if (scrolled > 50) nav.classList.add('scrolled');
           else nav.classList.remove('scrolled');
         }
 
-        // Active nav link
         updateActiveNav();
 
         ticking = false;
@@ -109,7 +104,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   statNums.forEach(el => counterObs.observe(el));
 
-  /* ---------- 6) Smooth scroll con offset ---------- */
+  /* ---------- 6) Conteo animado en impact-num (4 grandes números del Acto 4) ---------- */
+  const impactNums = document.querySelectorAll('.impact-num');
+  const impactObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        const html = entry.target.innerHTML;
+        // Extraer el número principal (antes del primer span si existe)
+        const textContent = entry.target.textContent.trim();
+        const match = textContent.match(/^(\d+)/);
+        if (match) {
+          const num = parseInt(match[1]);
+          entry.target.dataset.animated = 'true';
+          // Guardar el HTML original
+          const originalHtml = html;
+          const suffix = html.replace(/^[\d]+/, '');
+          const duration = 1400;
+          const start = performance.now();
+          function tick(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const v = Math.round(num * eased);
+            entry.target.innerHTML = v + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else entry.target.innerHTML = originalHtml;
+          }
+          requestAnimationFrame(tick);
+        }
+        impactObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  impactNums.forEach(el => impactObs.observe(el));
+
+  /* ---------- 7) Smooth scroll con offset ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -124,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- 7) Atajo de teclado: "T" para top ---------- */
+  /* ---------- 8) Atajo de teclado: "T" para top ---------- */
   document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
     if (e.key === 't' || e.key === 'T') {
@@ -132,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ---------- 8) Firma discreta en consola ---------- */
+  /* ---------- 9) Firma en consola ---------- */
   console.log(
     '%c AI CFO Analysis — FEMSA 1Q 2026 ',
     'background:#A100FF;color:#fff;padding:6px 14px;font-weight:600;font-family:Barlow,sans-serif;font-size:12px;letter-spacing:.05em;'
