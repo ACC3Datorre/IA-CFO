@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI CFO Analysis — FEMSA 1Q 2026 | Demo de IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --p:#A100FF;--pd:#7700CC;--pl:#E8CCFF;--pxl:#F5E6FF;
+  --blk:#000;--near:#1A1A1A;--g9:#2B2B2B;--g7:#4D4D4D;--g5:#737373;--g2:#E8E8E8;--g1:#F5F5F5;
+  --wht:#FFF;--grn:#00B398;--org:#FF6B00;--red:#E8002D;--amb:#FF9900;
+  --font:'Barlow',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--wht);color:var(--blk);line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--wht);border-bottom:3px solid var(--p);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.nav-left{display:flex;align-items:center;gap:20px;}
+.logo-mark{font-size:20px;font-weight:700;letter-spacing:-0.5px;color:var(--blk);}
+.logo-mark em{color:var(--p);font-style:normal;font-size:26px;}
+.nav-sep{width:1px;height:24px;background:var(--g2);}
+.nav-label{font-size:12px;color:var(--g5);font-weight:400;letter-spacing:0.04em;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:13px;color:var(--g7);text-decoration:none;font-weight:500;letter-spacing:0.03em;transition:color .2s;}
+.nav-links a:hover{color:var(--p);}
+.nav-cta{background:var(--p);color:var(--wht);font-size:12px;font-weight:600;padding:8px 20px;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;}
+.nav-cta:hover{background:var(--pd);}
+
+/* HERO */
+.hero{margin-top:60px;background:var(--blk);padding:88px 48px 72px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(161,0,255,.18) 0%,transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-80px;left:30%;width:300px;height:300px;background:radial-gradient(circle,rgba(161,0,255,.09) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--p);margin-bottom:18px;}
+.hero-title{font-size:54px;line-height:1.04;font-weight:300;color:var(--wht);margin-bottom:24px;}
+.hero-title strong{font-weight:700;color:var(--p);}
+.hero-desc{font-size:16px;color:#A0A0A0;line-height:1.75;margin-bottom:36px;}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;}
+.hero-tag{font-size:11px;font-weight:500;padding:5px 14px;border:1px solid #333;color:#A0A0A0;letter-spacing:.05em;}
+.hero-tag.active{border-color:var(--p);color:var(--p);}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.stat-box{background:#111;padding:32px 24px;position:relative;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:transparent;}
+.stat-box.purple::before{background:var(--p);}
+.stat-box.green::before{background:var(--grn);}
+.stat-box.orange::before{background:var(--org);}
+.stat-num{font-size:44px;font-weight:300;color:var(--wht);line-height:1;}
+.stat-num b{color:var(--p);font-weight:700;}
+.stat-label{font-size:12px;color:#666;margin-top:10px;line-height:1.4;letter-spacing:.02em;}
+.stat-sub{font-size:11px;color:#444;margin-top:4px;}
+
+/* SECTIONS */
+section{padding:80px 48px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--p);margin-bottom:12px;}
+.section-title{font-size:38px;font-weight:300;line-height:1.15;margin-bottom:16px;}
+.section-title strong{font-weight:700;}
+.section-desc{font-size:16px;color:var(--g7);line-height:1.75;max-width:640px;margin-bottom:48px;}
+
+/* ACTO 1 */
+.acto1{background:var(--wht);}
+.challenge-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.challenge-list{display:flex;flex-direction:column;gap:0;}
+.challenge-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--g2);}
+.challenge-item:last-child{border-bottom:none;}
+.ch-icon{width:44px;height:44px;background:var(--g1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;}
+.ch-title{font-size:15px;font-weight:600;margin-bottom:4px;}
+.ch-desc{font-size:14px;color:var(--g5);line-height:1.6;}
+.challenge-visual{background:var(--blk);padding:36px;position:relative;}
+.cv-title{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g5);margin-bottom:24px;}
+.timeline-item{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.tl-label{font-size:13px;color:#666;width:130px;flex-shrink:0;}
+.tl-bar-bg{flex:1;background:#222;height:32px;position:relative;}
+.tl-bar{height:100%;display:flex;align-items:center;padding-left:12px;font-size:12px;font-weight:600;letter-spacing:.04em;}
+.tl-bar.old{background:#333;color:#999;width:100%;}
+.tl-bar.new{background:var(--p);color:var(--wht);}
+.tl-days{font-size:12px;color:#444;width:60px;text-align:right;flex-shrink:0;}
+.cv-note{font-size:12px;color:#444;margin-top:20px;line-height:1.5;padding-top:16px;border-top:1px solid #222;}
+
+/* ACTO 2 */
+.acto2{background:var(--g1);}
+.prompt-box{background:var(--blk);border-left:4px solid var(--p);padding:40px 48px;position:relative;overflow:hidden;}
+.prompt-box::before{content:'"';position:absolute;top:-20px;left:32px;font-size:180px;color:rgba(161,0,255,.07);font-weight:700;line-height:1;}
+.prompt-header{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.prompt-badge{font-size:11px;font-weight:600;background:var(--p);color:var(--wht);padding:4px 12px;letter-spacing:.08em;text-transform:uppercase;}
+.prompt-badge2{font-size:11px;font-weight:600;background:#222;color:#666;padding:4px 12px;letter-spacing:.08em;text-transform:uppercase;}
+.prompt-text{font-size:14px;color:#CCC;line-height:1.85;font-style:italic;}
+.prompt-text strong{color:var(--p);font-style:normal;font-weight:600;}
+.prompt-text em{color:var(--wht);font-style:normal;}
+.modules-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:48px;}
+.module-card{background:var(--blk);padding:24px 20px;text-align:center;}
+.module-num{font-size:28px;font-weight:300;color:var(--p);}
+.module-label{font-size:12px;color:#666;margin-top:6px;line-height:1.4;letter-spacing:.02em;}
+
+/* ACTO 3 */
+.acto3{background:var(--wht);}
+.exec-summary{background:var(--near);border-left:4px solid var(--p);padding:32px 40px;margin-bottom:48px;}
+.es-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--p);margin-bottom:12px;}
+.es-text{font-size:16px;color:#CCC;line-height:1.8;}
+.es-text strong{color:var(--wht);font-weight:600;}
+.rating-badge{display:inline-flex;align-items:center;gap:10px;background:var(--p);padding:10px 24px;margin-top:16px;}
+.rb-num{font-size:28px;font-weight:700;color:var(--wht);}
+.rb-label{font-size:13px;color:rgba(255,255,255,.8);line-height:1.3;}
+
+/* KPI TABLE */
+.kpi-table{width:100%;border-collapse:collapse;margin-bottom:48px;font-size:14px;}
+.kpi-table th{text-align:left;padding:12px 16px;border-bottom:2px solid var(--blk);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--g5);background:var(--g1);}
+.kpi-table td{padding:12px 16px;border-bottom:1px solid var(--g2);vertical-align:middle;}
+.kpi-table tr:hover td{background:var(--pxl);}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;}
+.dot-g{background:var(--grn);}
+.dot-r{background:var(--red);}
+.dot-a{background:var(--amb);}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:2px;letter-spacing:.04em;}
+.pill-g{background:#D4F5EF;color:#006B58;}
+.pill-r{background:#FCEAEA;color:#9C001D;}
+.pill-a{background:#FFF3D6;color:#7A4800;}
+
+/* SEGMENTS */
+.seg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:48px;}
+.seg-card{background:var(--blk);padding:28px 20px;position:relative;overflow:hidden;}
+.seg-card.leader::after{content:'LÍDER';position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;background:var(--p);color:var(--wht);padding:2px 8px;letter-spacing:.1em;}
+.seg-card.warning::after{content:'ALERTA';position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;background:var(--red);color:var(--wht);padding:2px 8px;letter-spacing:.1em;}
+.seg-card.surprise::after{content:'SORPRESA';position:absolute;top:12px;right:12px;font-size:9px;font-weight:700;background:var(--grn);color:var(--wht);padding:2px 8px;letter-spacing:.1em;}
+.seg-name{font-size:13px;font-weight:700;color:var(--wht);margin-bottom:16px;padding-right:60px;line-height:1.3;}
+.seg-kpi{margin-bottom:10px;}
+.seg-kpi-val{font-size:22px;font-weight:300;color:var(--p);}
+.seg-kpi-label{font-size:11px;color:#555;margin-top:2px;letter-spacing:.02em;}
+.seg-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #222;padding-top:8px;margin-top:12px;}
+.seg-row span:first-child{font-size:11px;color:#555;}
+.seg-row span:last-child{font-size:12px;font-weight:600;}
+.seg-up{color:var(--grn);}
+.seg-dn{color:var(--red);}
+.seg-fl{color:#666;}
+
+/* CHARTS */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;}
+.chart-card{background:var(--g1);padding:32px;}
+.chart-title{font-size:13px;font-weight:600;letter-spacing:.04em;margin-bottom:6px;}
+.chart-sub{font-size:12px;color:var(--g5);margin-bottom:24px;}
+.chart-wrap{position:relative;width:100%;height:200px;}
+
+/* RISKS */
+.risks-title{font-size:24px;font-weight:600;margin-bottom:8px;}
+.risks-sub{font-size:14px;color:var(--g5);margin-bottom:32px;}
+.risks-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:48px;}
+.risk-item{display:flex;gap:0;align-items:stretch;}
+.risk-severity{width:120px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 12px;text-align:center;}
+.risk-severity.sev-red{background:var(--red);}
+.risk-severity.sev-org{background:var(--org);}
+.risk-severity.sev-amb{background:var(--amb);}
+.risk-sev-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--wht);}
+.risk-sev-icon{font-size:22px;margin-bottom:4px;}
+.risk-body{flex:1;background:var(--g1);padding:20px 28px;border-left:none;}
+.risk-rtitle{font-size:14px;font-weight:600;margin-bottom:4px;}
+.risk-rdesc{font-size:13px;color:var(--g5);line-height:1.6;}
+
+/* QUESTIONS */
+.questions-list{display:flex;flex-direction:column;gap:3px;margin-bottom:48px;}
+.q-item{display:flex;gap:0;align-items:stretch;}
+.q-num{background:var(--p);color:var(--wht);font-size:20px;font-weight:700;width:60px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.q-body{background:var(--g1);flex:1;padding:20px 28px;}
+.q-text{font-size:14px;color:var(--g9);line-height:1.7;}
+
+/* ACTO 4 */
+.acto4{background:var(--blk);}
+.acto4 .section-title{color:var(--wht);}
+.acto4 .section-title strong{color:var(--p);}
+.acto4 .section-desc{color:#666;}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:56px;}
+.impact-card{background:#111;padding:36px 28px;border-top:3px solid var(--p);}
+.impact-num{font-size:52px;font-weight:300;color:var(--p);line-height:1;}
+.impact-label{font-size:13px;color:#666;margin-top:10px;line-height:1.5;}
+.impact-sub{font-size:12px;color:#444;margin-top:6px;}
+.capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.cap-card{background:#0D0D0D;padding:28px 24px;}
+.cap-icon{font-size:24px;margin-bottom:14px;}
+.cap-title{font-size:14px;font-weight:600;color:var(--wht);margin-bottom:8px;}
+.cap-desc{font-size:13px;color:#555;line-height:1.6;}
+
+/* FOOTER */
+footer{background:#000;border-top:3px solid var(--p);padding:40px 48px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-size:16px;font-weight:700;color:var(--wht);}
+.footer-logo em{color:var(--p);font-style:normal;}
+.footer-right{font-size:12px;color:#444;text-align:right;line-height:1.7;}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-in-delay-1{transition-delay:.1s;}
+.fade-in-delay-2{transition-delay:.2s;}
+.fade-in-delay-3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="logo-mark">Accenture<em>.</em></div>
+    <div class="nav-sep"></div>
+    <div class="nav-label">AI &amp; Finance Intelligence</div>
+  </div>
+  <div class="nav-links">
+    <a href="#acto1">El Desafío</a>
+    <a href="#acto2">La Solución</a>
+    <a href="#acto3">El Análisis</a>
+    <a href="#acto4">El Impacto</a>
+  </div>
+  <button class="nav-cta">Contactar</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow fade-in">Caso de Éxito — IA Financiera</div>
+      <h1 class="hero-title fade-in fade-in-delay-1">IA como <strong>CFO Experto</strong> en tiempo récord</h1>
+      <p class="hero-desc fade-in fade-in-delay-2">Analizamos los resultados financieros del 1Q 2026 de FEMSA — una de las empresas más grandes de América Latina — con la profundidad de un analista senior, en minutos en lugar de días.</p>
+      <div class="hero-tags fade-in fade-in-delay-3">
+        <span class="hero-tag active">FEMSA 1Q 2026</span>
+        <span class="hero-tag">Análisis CFO</span>
+        <span class="hero-tag">Detección de Riesgos</span>
+        <span class="hero-tag">10 Dimensiones</span>
+      </div>
+    </div>
+    <div class="stats-grid fade-in fade-in-delay-2">
+      <div class="stat-box purple">
+        <div class="stat-num"><b>~5</b></div>
+        <div class="stat-label">Minutos para análisis completo</div>
+        <div class="stat-sub">vs. 3–5 días tradicional</div>
+      </div>
+      <div class="stat-box green">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Dimensiones analizadas simultáneamente</div>
+        <div class="stat-sub">P&amp;L, Balance, Riesgos y más</div>
+      </div>
+      <div class="stat-box orange">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Riesgos detectados y clasificados</div>
+        <div class="stat-sub">Inmediatos, estructurales, latentes</div>
+      </div>
+      <div class="stat-box" style="background:#111;">
+        <div class="stat-num" style="color:#fff;">5</div>
+        <div class="stat-label">Segmentos analizados en profundidad</div>
+        <div class="stat-sub">OXXO, KOF, Health, Europa, Americas</div>
+      </div>
+      <div class="stat-box" style="background:#111;">
+        <div class="stat-num" style="color:#fff;">6.5<b style="font-size:24px;color:var(--p);">/10</b></div>
+        <div class="stat-label">Rating CFO del trimestre</div>
+        <div class="stat-sub">Con justificación ejecutiva</div>
+      </div>
+      <div class="stat-box" style="background:#111;">
+        <div class="stat-num" style="color:#fff;">5</div>
+        <div class="stat-label">Preguntas clave para el earnings call</div>
+        <div class="stat-sub">Listas para el Board</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTO 1 -->
+<section class="acto1" id="acto1">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">Acto 1</div>
+    <h2 class="section-title fade-in"><strong>El Desafío:</strong> Análisis financiero<br>complejo, poco tiempo</h2>
+    <p class="section-desc fade-in">Las empresas reciben reportes de resultados trimestrales de decenas de páginas. El proceso tradicional de análisis consume recursos críticos y tarda días. La velocidad de decisión sufre.</p>
+    <div class="challenge-grid">
+      <div class="challenge-list fade-in">
+        <div class="challenge-item">
+          <div class="ch-icon">⏱</div>
+          <div>
+            <div class="ch-title">3 a 5 días de análisis manual</div>
+            <div class="ch-desc">Un equipo de analistas financieros necesita días para procesar un earnings report de 22 páginas, construir comparativos, detectar riesgos y preparar el brief ejecutivo.</div>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="ch-icon">👥</div>
+          <div>
+            <div class="ch-title">Múltiples analistas involucrados</div>
+            <div class="ch-desc">El análisis requiere coordinación entre finanzas, estrategia e inversiones. Riesgo de inconsistencias y pérdida de contexto entre áreas.</div>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="ch-icon">📊</div>
+          <div>
+            <div class="ch-title">Cobertura parcial e inconsistente</div>
+            <div class="ch-desc">Con el tiempo limitado, el análisis raramente cubre los 10 ejes necesarios para una decisión informada: P&amp;L, cash flow, balance, KPIs, riesgos, segmentos y más.</div>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <div class="ch-icon">⚠</div>
+          <div>
+            <div class="ch-title">Riesgos que se escapan</div>
+            <div class="ch-desc">En análisis acelerados, señales débiles como reclasificaciones contables, cambios en segmentos de reporte o deterioro del below-the-line suelen pasar desapercibidas.</div>
+          </div>
+        </div>
+      </div>
+      <div class="challenge-visual fade-in fade-in-delay-1">
+        <div class="cv-title">Tiempo de análisis — Comparativo</div>
+        <div class="timeline-item">
+          <div class="tl-label" style="color:#555;font-size:12px;">Proceso tradicional</div>
+          <div class="tl-bar-bg"><div class="tl-bar old">3–5 días</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-label" style="color:#555;font-size:12px;">Con IA (este caso)</div>
+          <div class="tl-bar-bg"><div class="tl-bar new" style="width:6%;">~5 min</div></div>
+        </div>
+        <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+          <div style="background:#111;padding:20px;">
+            <div style="font-size:24px;font-weight:300;color:#444;">Manual</div>
+            <div style="font-size:32px;font-weight:600;color:#666;margin-top:4px;">~40 hrs</div>
+            <div style="font-size:11px;color:#333;margin-top:8px;">Analista senior<br>+ equipo de soporte</div>
+          </div>
+          <div style="background:#111;padding:20px;border-top:3px solid var(--p);">
+            <div style="font-size:24px;font-weight:300;color:var(--p);">Con IA</div>
+            <div style="font-size:32px;font-weight:700;color:var(--wht);margin-top:4px;">&lt;5 min</div>
+            <div style="font-size:11px;color:#555;margin-top:8px;">Un prompt estructurado<br>+ 22 páginas de reporte</div>
+          </div>
+        </div>
+        <div class="cv-note">El reporte del 1Q 2026 de FEMSA tiene 22 páginas, 5 segmentos de negocio, tablas financieras completas y múltiples cambios metodológicos que requieren análisis experto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTO 2 -->
+<section class="acto2" id="acto2">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">Acto 2</div>
+    <h2 class="section-title fade-in"><strong>La Solución:</strong> Un prompt de CFO<br>diseñado con precisión</h2>
+    <p class="section-desc fade-in">El resultado es tan bueno como el prompt. Diseñamos un prompt estructurado en 10 módulos que instruye a la IA a actuar como un CFO experto con 20+ años de experiencia en large-caps latinoamericanas.</p>
+
+    <div class="prompt-box fade-in">
+      <div class="prompt-header">
+        <span class="prompt-badge">Prompt utilizado</span>
+        <span class="prompt-badge2">Copiado literalmente de la sesión</span>
+      </div>
+      <div class="prompt-text">
+        <em>"Actúa como un CFO experto con 20+ años de experiencia en empresas multinacionales y análisis de large-caps latinoamericanas.</em>
+        <br><br>
+        Voy a compartirte los resultados financieros de <strong>FEMSA del 1Q 2026</strong>. Necesito que hagas un análisis exhaustivo, profundo y crítico como si fueras a presentarlo al <strong>Board of Directors o a un comité de inversión institucional</strong>.
+        <br><br>
+        <strong>El análisis debe cubrir obligatoriamente:</strong> (1) Executive Summary con veredicto del trimestre, (2) P&amp;L Deep Dive — calidad del crecimiento, márgenes, one-time items, SG&amp;A, (3) Cash Flow y generación de caja real, (4) Balance y solidez financiera — ND/EBITDA, liquidez, ROIC, (5) Capital de trabajo — DSO, DIO, DPO, (6) Análisis por segmento con veredicto individual, (7) Novedades y cambios relevantes, (8) Tabla de KPIs con semáforo verde/amarillo/rojo, (9) Detección de riesgos clasificados en inmediatos, estructurales y latentes, (10) Veredicto final con rating 1–10 y las 5 preguntas más incisivas para el earnings call.
+        <br><br>
+        <em>Formato ejecutivo. Sé directo y crítico — <strong>no suavices hallazgos negativos</strong>. Si algo no queda claro, señálalo como 'información insuficiente'."</em>
+      </div>
+    </div>
+
+    <div class="modules-grid fade-in fade-in-delay-1">
+      <div class="module-card">
+        <div class="module-num">01</div>
+        <div class="module-label">Executive Summary &amp; Veredicto</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">02</div>
+        <div class="module-label">P&amp;L Deep Dive</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">03</div>
+        <div class="module-label">Cash Flow &amp; FCF</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">04</div>
+        <div class="module-label">Balance &amp; Leverage</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">05</div>
+        <div class="module-label">Capital de Trabajo</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">06</div>
+        <div class="module-label">Análisis por Segmento</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">07</div>
+        <div class="module-label">Novedades &amp; Cambios</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">08</div>
+        <div class="module-label">Semáforo de KPIs</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">09</div>
+        <div class="module-label">Detección de Riesgos</div>
+      </div>
+      <div class="module-card">
+        <div class="module-num">10</div>
+        <div class="module-label">Veredicto &amp; Preguntas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTO 3 -->
+<section class="acto3" id="acto3">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in">Acto 3</div>
+    <h2 class="section-title fade-in"><strong>El Análisis en Acción:</strong><br>Resultados reales de FEMSA 1Q 2026</h2>
+    <p class="section-desc fade-in">Este es el output real del análisis. La IA procesó 22 páginas del earnings release, identificó los hallazgos clave y generó un brief listo para el Board en minutos.</p>
+
+    <!-- Executive Summary -->
+    <div class="exec-summary fade-in">
+      <div class="es-label">Executive Summary — Veredicto del trimestre</div>
+      <div class="es-text">El trimestre de FEMSA fue <strong>operativamente sólido pero financieramente engañoso</strong>. A nivel EBITDA, el resultado supera expectativas con expansión de margen de 60 bps y crecimiento del 11.2%. El net income reportado de +97.3% es una ilusión contable: excluida la ganancia no recurrente de la fusión BradyPLUS/Imperial Dade (~Ps.11,951M), el beneficio neto subyacente colapsa un <strong>36.4%</strong>. El headline real del trimestre es: <strong>OXXO México rescata la historia, el below-the-line la deteriora</strong>. El aumento del apalancamiento y la triplicación de gastos financieros netos son señales que el Board debe discutir con urgencia.</div>
+      <div class="rating-badge">
+        <div class="rb-num">6.5<span style="font-size:16px;opacity:.7;">/10</span></div>
+        <div class="rb-label">Rating CFO<br>del trimestre</div>
+      </div>
+    </div>
+
+    <!-- KPI TABLE -->
+    <h3 class="fade-in" style="font-size:20px;font-weight:600;margin-bottom:20px;">Semáforo de KPIs Clave</h3>
+    <table class="kpi-table fade-in">
+      <thead>
+        <tr>
+          <th>KPI</th><th>1Q 2026</th><th>1Q 2025</th><th>Variación</th><th>Señal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Revenue consolidado</td><td><b>Ps.207,784M</b></td><td>Ps.195,819M</td><td>+6.1%</td><td><span class="dot dot-g"></span><span class="pill pill-g">Bien</span></td></tr>
+        <tr><td>EBITDA ajustado</td><td><b>Ps.28,127M</b></td><td>Ps.25,302M</td><td>+11.2%</td><td><span class="dot dot-g"></span><span class="pill pill-g">Bien</span></td></tr>
+        <tr><td>EBITDA margin</td><td><b>13.5%</b></td><td>12.9%</td><td>+60 bps</td><td><span class="dot dot-g"></span><span class="pill pill-g">Bien</span></td></tr>
+        <tr><td>Gross margin</td><td><b>40.5%</b></td><td>40.3%</td><td>+20 bps</td><td><span class="dot dot-g"></span><span class="pill pill-g">Bien</span></td></tr>
+        <tr><td>Net income <em style="font-size:11px;color:#999;">(excl. one-time)</em></td><td><b>Ps.5,688M</b></td><td>Ps.8,942M</td><td>−36.4%</td><td><span class="dot dot-r"></span><span class="pill pill-r">Alerta</span></td></tr>
+        <tr><td>Financiamiento neto</td><td><b>Ps.4,837M</b></td><td>Ps.1,412M</td><td>+242.6%</td><td><span class="dot dot-r"></span><span class="pill pill-r">Alerta</span></td></tr>
+        <tr><td>Net Debt / EBITDA ex-KOF</td><td><b>1.24x</b></td><td>0.69x</td><td>+0.55x</td><td><span class="dot dot-a"></span><span class="pill pill-a">Monitorear</span></td></tr>
+        <tr><td>CAPEX</td><td><b>Ps.6,195M</b></td><td>Ps.8,788M</td><td>−29.5%</td><td><span class="dot dot-a"></span><span class="pill pill-a">Cauteloso</span></td></tr>
+        <tr><td>OXXO México SSS</td><td><b>+6.0%</b></td><td>—</td><td>ticket +6.6%</td><td><span class="dot dot-g"></span><span class="pill pill-g">Bien</span></td></tr>
+        <tr><td>OXXO net aperturas</td><td><b>158</b></td><td>361</td><td>−56.2%</td><td><span class="dot dot-a"></span><span class="pill pill-a">Desaceleración</span></td></tr>
+        <tr><td>Spin by OXXO (activos)</td><td><b>11.0M</b></td><td>9.0M</td><td>+22.3%</td><td><span class="dot dot-g"></span><span class="pill pill-g">Excelente</span></td></tr>
+        <tr><td>Spin Premia tender</td><td><b>50.6%</b></td><td>42.5%</td><td>+8.1 pp</td><td><span class="dot dot-g"></span><span class="pill pill-g">Excelente</span></td></tr>
+        <tr><td>KOF volumen México</td><td><b>544.5M UC</b></td><td>553.3M UC</td><td>−1.6%</td><td><span class="dot dot-a"></span><span class="pill pill-a">Presión</span></td></tr>
+        <tr><td>Health gross margin</td><td><b>26.2%</b></td><td>29.4%</td><td>−320 bps</td><td><span class="dot dot-r"></span><span class="pill pill-r">Alerta</span></td></tr>
+        <tr><td>Health tiendas México</td><td><b>1,287</b></td><td>1,622</td><td>−335 LTM</td><td><span class="dot dot-r"></span><span class="pill pill-r">Alerta</span></td></tr>
+      </tbody>
+    </table>
+
+    <!-- SEGMENTS -->
+    <h3 class="fade-in" style="font-size:20px;font-weight:600;margin-bottom:20px;">Análisis por Segmento</h3>
+    <div class="seg-grid fade-in">
+      <div class="seg-card leader">
+        <div class="seg-name">OXXO México</div>
+        <div class="seg-kpi"><div class="seg-kpi-val">Ps.74,424M</div><div class="seg-kpi-label">Revenues (+8.3%)</div></div>
+        <div class="seg-kpi"><div class="seg-kpi-val" style="font-size:18px;">14.2%</div><div class="seg-kpi-label">EBITDA margin (+180 bps)</div></div>
+        <div class="seg-row"><span>EBITDA</span><span class="seg-up">+24.2%</span></div>
+        <div class="seg-row"><span>SSS</span><span class="seg-up">+6.0%</span></div>
+        <div class="seg-row"><span>Tiendas</span><span style="color:#fff;">24,455</span></div>
+      </div>
+      <div class="seg-card surprise">
+        <div class="seg-name">Americas &amp; Mobility</div>
+        <div class="seg-kpi"><div class="seg-kpi-val">Ps.24,988M</div><div class="seg-kpi-label">Revenues (+12.9%)</div></div>
+        <div class="seg-kpi"><div class="seg-kpi-val" style="font-size:18px;">+120.7%</div><div class="seg-kpi-label">Op. income comparable</div></div>
+        <div class="seg-row"><span>EBITDA comp.</span><span class="seg-up">+33.1%</span></div>
+        <div class="seg-row"><span>Latam SSS</span><span class="seg-up">+21.4%</span></div>
+        <div class="seg-row"><span>Integra Brasil</span><span style="color:var(--p);">Feb-26</span></div>
+      </div>
+      <div class="seg-card warning">
+        <div class="seg-name">FEMSA Health</div>
+        <div class="seg-kpi"><div class="seg-kpi-val">Ps.22,175M</div><div class="seg-kpi-label">Revenues (+0.9%)</div></div>
+        <div class="seg-kpi"><div class="seg-kpi-val" style="font-size:18px;color:var(--red);">26.2%</div><div class="seg-kpi-label">Gross margin (−320 bps)</div></div>
+        <div class="seg-row"><span>México tiendas</span><span class="seg-dn">−335 LTM</span></div>
+        <div class="seg-row"><span>Op. income</span><span class="seg-dn">−14.2%</span></div>
+        <div class="seg-row"><span>Salida PBS</span><span class="seg-dn">Sep-26</span></div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">Coca-Cola FEMSA</div>
+        <div class="seg-kpi"><div class="seg-kpi-val">Ps.70,925M</div><div class="seg-kpi-label">Revenues (+1.1% | +6.0% comp.)</div></div>
+        <div class="seg-kpi"><div class="seg-kpi-val" style="font-size:18px;">18.9%</div><div class="seg-kpi-label">EBITDA margin (estable)</div></div>
+        <div class="seg-row"><span>Vol. México</span><span class="seg-dn">−1.6%</span></div>
+        <div class="seg-row"><span>Vol. Brasil</span><span class="seg-up">+3.6% récord</span></div>
+        <div class="seg-row"><span>Gross margin</span><span class="seg-up">+150 bps</span></div>
+      </div>
+      <div class="seg-card">
+        <div class="seg-name">Europa</div>
+        <div class="seg-kpi"><div class="seg-kpi-val">Ps.12,919M</div><div class="seg-kpi-label">Revenues (+0.1% | +1.5% comp.)</div></div>
+        <div class="seg-kpi"><div class="seg-kpi-val" style="font-size:18px;">14.0%</div><div class="seg-kpi-label">EBITDA margin (+40 bps)</div></div>
+        <div class="seg-row"><span>SSS comp.</span><span class="seg-fl">−0.2%</span></div>
+        <div class="seg-row"><span>Op. income</span><span class="seg-up">+7.4%</span></div>
+        <div class="seg-row"><span>Tiendas</span><span style="color:#fff;">2,744</span></div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-grid fade-in">
+      <div class="chart-card">
+        <div class="chart-title">Revenues por segmento</div>
+        <div class="chart-sub">1Q 2026 vs 1Q 2025 — Ps. millones</div>
+        <div class="chart-wrap"><canvas id="revChart" role="img" aria-label="Revenues por segmento FEMSA 1Q26 vs 1Q25">OXXO 74424 vs 68744; Americas 24988 vs 22142; Health 22175 vs 21972; Europa 12919 vs 12909; KOF 70925 vs 70157</canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">EBITDA ajustado por segmento</div>
+        <div class="chart-sub">1Q 2026 vs 1Q 2025 — Ps. millones</div>
+        <div class="chart-wrap"><canvas id="ebitChart" role="img" aria-label="EBITDA por segmento FEMSA 1Q26 vs 1Q25">OXXO 10545 vs 8492; Americas 1087 vs 942; Health 1975 vs 1980; Europa 1804 vs 1750; KOF 13374 vs 13254</canvas></div>
+      </div>
+    </div>
+
+    <!-- RISKS -->
+    <h3 class="risks-title fade-in">Riesgos detectados y clasificados</h3>
+    <p class="risks-sub fade-in">La IA identificó 9 riesgos organizados por severidad e impacto esperado</p>
+    <div class="risks-grid fade-in">
+      <div class="risk-item">
+        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Net income subyacente colapsó −36.4%</div><div class="risk-rdesc">Excluido el one-time de BradyPLUS/Imperial Dade (~Ps.11,951M), el beneficio neto cae dramáticamente. La ganancia reportada de +97.3% es una ilusión contable. El mercado debe aislar este impacto.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Gastos financieros netos triplicados (+242.6%)</div><div class="risk-rdesc">Interest expense neto subió de Ps.3,046M a Ps.4,296M. Pérdida por FX de Ps.444M vs ganancia de Ps.439M el año anterior. El income por intereses cayó −45% por menor caja y menores tasas.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Health México: reestructuración sin fondo visible</div><div class="risk-rdesc">335 cierres de tiendas en LTM en México. Gross margin −320 bps. Salida del contrato PBS con EPS Sanitas en Colombia (expira sept-26) elimina un flujo relevante de revenue institucional.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Leverage duplicado: ND/EBITDA de 0.69x a 1.24x</div><div class="risk-rdesc">Ps.47,218M en dividendos + Ps.16,055M en recompras en 12 meses generaron el deterioro. El ratio es manejable pero el ritmo de deterioro (+0.55x en un año) es lo preocupante si continúa.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-body"><div class="risk-rtitle">CAPEX reducido puede comprometer crecimiento futuro</div><div class="risk-rdesc">Aperturas OXXO México cayeron 56% YoY (158 vs 361). CAPEX total −29.5%. Una desaceleración sostenida sacrificaría market share en el mediano plazo ante competidores más agresivos.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-body"><div class="risk-rtitle">KOF México: pérdida de volumen en mercado core</div><div class="risk-rdesc">Volumen México + Centroamérica cayó −1.6%. KOF representa el 34% de revenues consolidados. Una recaída sostenida es altamente material para los dividendos que sostienen el ex-KOF EBITDA.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Reclasificación contable en Europa y Health</div><div class="risk-rdesc">Distribución migrada de SG&amp;A a COGS distorsiona comparabilidad del gross margin. Solo se refleja en 1Q26, no en 1Q25. Añade complejidad al análisis y puede extenderse a otros segmentos.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Europa: tráfico débil y SSS negativo en Alemania</div><div class="risk-rdesc">SSS reportado −2.7% (comparable −0.2%). Alemania muestra debilidad en B2B y tráfico. Suiza compensa, pero un deterioro del consumo europeo impactaría los Ps.1,804M de EBITDA del segmento.</div></div>
+      </div>
+      <div class="risk-item">
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-body"><div class="risk-rtitle">Macroentorno internacional complejo</div><div class="risk-rdesc">MXN apreciado genera headwind de FX de ~230 bps en revenues. Argentina con inflación LTM 32.8%. Volatilidad cambiaria puede amplificarse dado el contexto global de aranceles y política monetaria.</div></div>
+      </div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <h3 class="fade-in" style="font-size:20px;font-weight:600;margin-bottom:8px;">Las 5 preguntas más incisivas para el earnings call</h3>
+    <p class="fade-in" style="font-size:14px;color:var(--g5);margin-bottom:24px;">Generadas automáticamente para plantear al CEO/CFO de FEMSA</p>
+    <div class="questions-list fade-in">
+      <div class="q-item">
+        <div class="q-num">1</div>
+        <div class="q-body"><div class="q-text">Excluido el one-time de BradyPLUS, el net income cayó 36.4%. <b>¿Cuál es el plan concreto para revertir el deterioro de los gastos financieros netos a lo largo de 2026?</b></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">2</div>
+        <div class="q-body"><div class="q-text">La política de dividendos + recompras llevó el ND/EBITDA de 0.69x a 1.24x en 12 meses. <b>¿Cuál es el nivel de leverage con el que están cómodos, y qué umbral activaría un ajuste en la política de retorno de capital?</b></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">3</div>
+        <div class="q-body"><div class="q-text">En Health México cerraron 335 tiendas en LTM y salen del contrato PBS en Colombia. <b>¿Cuál será el impacto cuantificado en revenues y EBITDA en 3Q-4Q26, y cuándo ven el fondo de la reestructuración?</b></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">4</div>
+        <div class="q-body"><div class="q-text">Las aperturas de OXXO México cayeron 56% YoY. <b>¿Esto refleja un cambio permanente en la velocidad de expansión o esperan reaccelerar en 2H26? ¿Cuál es el guidance de nuevas tiendas para el año completo?</b></div></div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">5</div>
+        <div class="q-body"><div class="q-text">El ticket en OXXO México subió 6.6% apoyado en nuevos impuestos. Una vez que ese efecto se normalice, <b>¿qué drivers de SSS sostendrán el crecimiento cuando el consumidor mexicano sigue bajo estrés?</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTO 4 -->
+<section class="acto4" id="acto4">
+  <div class="section-inner">
+    <div class="section-eyebrow fade-in" style="color:var(--p);">Acto 4</div>
+    <h2 class="section-title fade-in"><strong>El Impacto:</strong> Lo que esto<br>significa para tu organización</h2>
+    <p class="section-desc fade-in">La IA no reemplaza al analista financiero — lo multiplica. En minutos, cualquier equipo puede tener el rigor analítico de un CFO senior con décadas de experiencia.</p>
+
+    <div class="impact-grid fade-in">
+      <div class="impact-card">
+        <div class="impact-num">97<span style="font-size:24px;">%</span></div>
+        <div class="impact-label">Reducción en tiempo de análisis</div>
+        <div class="impact-sub">De 3–5 días a menos de 5 minutos</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">10</div>
+        <div class="impact-label">Dimensiones analizadas simultáneamente</div>
+        <div class="impact-sub">Un analista humano cubriría 3–4 en el mismo tiempo</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">9</div>
+        <div class="impact-label">Riesgos detectados y clasificados</div>
+        <div class="impact-sub">Incluyendo señales débiles y reclasificaciones contables</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-num">0</div>
+        <div class="impact-label">Sesgos de presentación</div>
+        <div class="impact-sub">La IA no suaviza hallazgos negativos. Dice lo que los números muestran.</div>
+      </div>
+    </div>
+
+    <div class="capabilities-grid fade-in">
+      <div class="cap-card">
+        <div class="cap-icon">&#128200;</div>
+        <div class="cap-title">Análisis de earnings en tiempo real</div>
+        <div class="cap-desc">Procesa cualquier earnings release el mismo día de publicación. Tu equipo llega al earnings call con preguntas ya formuladas.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#127919;</div>
+        <div class="cap-title">Detección de riesgos ocultos</div>
+        <div class="cap-desc">Identifica reclasificaciones contables, one-time items, cambios metodológicos y señales débiles que el análisis apresurado omite.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#128203;</div>
+        <div class="cap-title">Briefs listos para el Board</div>
+        <div class="cap-desc">Output estructurado con semáforos, tablas comparativas, veredicto ejecutivo y preguntas para management — listo para presentar.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#127758;</div>
+        <div class="cap-title">Cobertura multi-segmento y multi-geo</div>
+        <div class="cap-desc">Analiza simultáneamente 5 segmentos de negocio en 18 países con exposición a 8 monedas — sin perder el hilo narrativo.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#9889;</div>
+        <div class="cap-title">Escalable a cualquier empresa</div>
+        <div class="cap-desc">El mismo framework de prompt funciona para cualquier large-cap. Adaptable a diferentes sectores, geografías y marcos contables.</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">&#128101;</div>
+        <div class="cap-title">Democratiza el expertise de CFO</div>
+        <div class="cap-desc">Equipos sin analistas senior pueden acceder al mismo nivel de rigor analítico. La IA actúa como el experto que no siempre está disponible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Accenture<em>.</em></div>
+      <div style="font-size:12px;color:#333;margin-top:8px;">AI &amp; Finance Intelligence Practice</div>
+    </div>
+    <div class="footer-right">
+      <div style="color:#555;">Caso de éxito — FEMSA 1Q 2026</div>
+      <div style="color:#333;">Análisis generado con Claude (Anthropic) · Abril 2026</div>
+      <div style="color:#222;margin-top:4px;">Uso interno. Confidencial.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const segs = ['OXXO Méx.','Americas','Health','Europa','KOF'];
+const revData26 = [74424,24988,22175,12919,70925];
+const revData25 = [68744,22142,21972,12909,70157];
+const ebitData26 = [10545,1087,1975,1804,13374];
+const ebitData25 = [8492,942,1980,1750,13254];
+
+const chartOpts = (label26, label25, fmt) => ({
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:false}},
+  scales:{
+    x:{grid:{display:false}, ticks:{font:{size:11,family:'Barlow'},color:'#888'}},
+    y:{grid:{color:'rgba(0,0,0,0.05)'}, ticks:{font:{size:10,family:'Barlow'},color:'#888',callback:v=>fmt(v)}}
+  }
+});
+
+new Chart(document.getElementById('revChart'),{
+  type:'bar',
+  data:{labels:segs,datasets:[
+    {label:'1Q 2026',data:revData26,backgroundColor:'#A100FF',borderRadius:0},
+    {label:'1Q 2025',data:revData25,backgroundColor:'#E8CCFF',borderRadius:0}
+  ]},
+  options:chartOpts('1Q26','1Q25',v=>(v/1000).toFixed(0)+'K')
+});
+
+new Chart(document.getElementById('ebitChart'),{
+  type:'bar',
+  data:{labels:segs,datasets:[
+    {label:'1Q 2026',data:ebitData26,backgroundColor:'#00B398',borderRadius:0},
+    {label:'1Q 2025',data:ebitData25,backgroundColor:'#B3EAE2',borderRadius:0}
+  ]},
+  options:chartOpts('1Q26','1Q25',v=>(v/1000).toFixed(1)+'K')
+});
+
+// Intersection Observer for fade-in
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
