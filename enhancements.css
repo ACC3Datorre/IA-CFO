@@ -1,0 +1,238 @@
+/* ===================================================
+   ENHANCEMENTS.CSS — Versión Ejecutiva
+   Animaciones sutiles, polish profesional
+   =================================================== */
+
+/* ============ 1) BARRA DE PROGRESO DE SCROLL ============ */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:#A100FF;
+  z-index:9999;transition:width .15s ease-out;
+}
+
+/* ============ 2) BOTÓN VOLVER ARRIBA ============ */
+.back-to-top{
+  position:fixed;bottom:32px;right:32px;width:44px;height:44px;
+  background:#A100FF;color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease,transform .25s ease,background .25s ease;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:150;
+}
+.back-to-top svg{width:18px;height:18px;}
+.back-to-top.visible{opacity:1;pointer-events:auto;}
+.back-to-top:hover{
+  background:#7700CC;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+/* ============ 3) NAV — BLUR AL HACER SCROLL ============ */
+nav{
+  transition:height .3s ease,box-shadow .3s ease,background .3s ease,backdrop-filter .3s ease;
+}
+nav.scrolled{
+  height:54px;
+  background:rgba(255,255,255,.92)!important;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 2px 16px rgba(0,0,0,.06);
+}
+
+/* Underline animado en links del nav */
+.nav-links a{position:relative;transition:color .25s ease;}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-6px;
+  width:0;height:1.5px;background:#A100FF;
+  transition:width .3s cubic-bezier(.65,0,.35,1);
+}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:#A100FF;}
+
+/* CTA del nav */
+.nav-cta{
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease!important;
+}
+.nav-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(161,0,255,.3);
+}
+
+/* ============ 4) HERO — ANIMACIÓN DE ENTRADA ============ */
+.hero-eyebrow{animation:fadeUp .8s cubic-bezier(.22,1,.36,1) both;}
+.hero-title{animation:fadeUp 1s cubic-bezier(.22,1,.36,1) both;animation-delay:.05s;}
+.hero-desc{animation:fadeUp 1s cubic-bezier(.22,1,.36,1) both;animation-delay:.15s;}
+.hero-tags{animation:fadeUp 1s cubic-bezier(.22,1,.36,1) both;animation-delay:.25s;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to  {opacity:1;transform:translateY(0);}
+}
+
+/* Stat boxes — entrada escalonada sutil */
+.stat-box{
+  transition:background .35s ease,transform .35s ease;
+  animation:fadeUp .8s cubic-bezier(.22,1,.36,1) both;
+}
+.stat-box:nth-child(1){animation-delay:.3s;}
+.stat-box:nth-child(2){animation-delay:.4s;}
+.stat-box:nth-child(3){animation-delay:.5s;}
+.stat-box:nth-child(4){animation-delay:.6s;}
+.stat-box:nth-child(5){animation-delay:.7s;}
+.stat-box:nth-child(6){animation-delay:.8s;}
+
+.stat-box:hover{
+  background:#1a1a1a;
+  transform:translateY(-3px);
+}
+.stat-num{
+  font-variant-numeric:tabular-nums;
+  transition:color .3s ease;
+}
+.stat-box:hover .stat-num{color:#E8CCFF;}
+
+/* ============ 5) FADE-IN MEJORADO ============ */
+.fade-in{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);
+}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ============ 6) ICONOS SVG — TRANSICIÓN ============ */
+.ch-icon,.cap-icon,.risk-sev-icon{
+  transition:transform .3s ease,color .3s ease;
+}
+.ch-icon svg,.cap-icon svg,.risk-sev-icon svg{
+  transition:transform .3s ease;
+}
+
+/* Hover sutil en cards con íconos */
+.cap-card{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;}
+.cap-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 24px rgba(0,0,0,.08);
+}
+.cap-card:hover .cap-icon svg{transform:scale(1.1);}
+
+/* ============ 7) CARDS — HOVER PROFESIONAL ============ */
+.challenge-card,.module-card,.seg-card,.risk-item,.impact-card{
+  transition:
+    transform .35s cubic-bezier(.22,1,.36,1),
+    box-shadow .35s ease,
+    border-color .3s ease;
+}
+.challenge-card:hover,.module-card:hover,.seg-card:hover,.risk-item:hover,.impact-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+
+.challenge-card:hover .ch-icon{background:#A100FF;color:#fff;}
+
+/* ============ 8) TABLA DE KPIs ============ */
+table tr{transition:background .2s ease;}
+table tbody tr:hover{
+  background:rgba(161,0,255,.04);
+}
+
+/* ============ 9) PREGUNTAS DEL EARNINGS CALL ============ */
+.q-item{
+  transition:transform .3s ease,border-color .3s ease,background .3s ease;
+}
+.q-item:hover{
+  transform:translateX(6px);
+  border-color:#A100FF;
+}
+
+/* ============ 10) HERO TAGS ============ */
+.hero-tag{
+  transition:border-color .25s ease,color .25s ease,background .25s ease;
+}
+.hero-tag:hover{
+  border-color:#A100FF;color:#A100FF;
+  background:rgba(161,0,255,.05);
+}
+
+/* ============ 11) BOTONES ============ */
+button,.btn{
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+button:active,.btn:active{
+  transform:translateY(0);
+  transition-duration:.1s;
+}
+
+/* ============ 12) SELECCIÓN DE TEXTO ============ */
+::selection{background:#A100FF;color:#fff;}
+::-moz-selection{background:#A100FF;color:#fff;}
+
+/* ============ 13) SCROLLBAR DISCRETA ============ */
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#F5F5F5;}
+::-webkit-scrollbar-thumb{
+  background:#A100FF;border:2px solid #F5F5F5;
+  transition:background .25s ease;
+}
+::-webkit-scrollbar-thumb:hover{background:#7700CC;}
+
+/* ============ 14) FOCUS ACCESIBLE ============ */
+a:focus-visible,button:focus-visible{
+  outline:2px solid #A100FF;outline-offset:3px;
+}
+
+/* ============ 15) ENTRADA SUAVE DE LA PÁGINA ============ */
+body{animation:pageLoad .5s ease-out;}
+@keyframes pageLoad{
+  from{opacity:0;}
+  to  {opacity:1;}
+}
+
+/* ============ 16) RIESGOS — SEMÁFORO HOVER ============ */
+.risk-severity{
+  transition:transform .3s ease;
+}
+.risk-item:hover .risk-severity{
+  transform:scale(1.03);
+}
+.risk-item:hover .risk-sev-icon svg{
+  transform:scale(1.1);
+}
+
+/* ============ 17) IMPRESIÓN ============ */
+@media print{
+  nav,.back-to-top,.scroll-progress{display:none!important;}
+  .hero{background:#fff!important;color:#000!important;}
+  .hero-title,.hero-desc{color:#000!important;}
+  *{box-shadow:none!important;animation:none!important;}
+  .fade-in{opacity:1!important;transform:none!important;}
+}
+
+/* ============ 18) RESPONSIVE ============ */
+@media (max-width:768px){
+  .back-to-top{bottom:20px;right:20px;width:40px;height:40px;}
+  nav.scrolled{padding:0 20px;}
+}
+
+/* ============ 19) REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+
+/* ============ 20) SCROLL OFFSET PARA NAV FIJO ============ */
+[id^="acto"],section[id]{scroll-margin-top:80px;}
+
+/* ============ 21) NÚMEROS TABULARES (KPIs y métricas) ============ */
+.stat-num,.impact-num,.metric-num,.module-num,td,th{
+  font-variant-numeric:tabular-nums;
+}
+
+/* ============ 22) RATING DEL VEREDICTO — PULSO MUY SUTIL ============ */
+.rating-circle,.veredicto-rating{
+  transition:transform .4s ease;
+}
+.rating-circle:hover,.veredicto-rating:hover{
+  transform:scale(1.04);
+}

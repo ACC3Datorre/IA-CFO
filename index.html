@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>AI CFO Analysis — FEMSA 1Q 2026 | Demo de IA</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="enhancements.css"/>
 <style>
 :root{
   --p:#A100FF;--pd:#7700CC;--pl:#E8CCFF;--pxl:#F5E6FF;
@@ -66,7 +67,8 @@ section{padding:80px 48px;}
 .challenge-list{display:flex;flex-direction:column;gap:0;}
 .challenge-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--g2);}
 .challenge-item:last-child{border-bottom:none;}
-.ch-icon{width:44px;height:44px;background:var(--g1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;}
+.ch-icon{width:48px;height:48px;background:var(--g1);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--p);}
+.ch-icon svg{width:24px;height:24px;}
 .ch-title{font-size:15px;font-weight:600;margin-bottom:4px;}
 .ch-desc{font-size:14px;color:var(--g5);line-height:1.6;}
 .challenge-visual{background:var(--blk);padding:36px;position:relative;}
@@ -153,7 +155,8 @@ section{padding:80px 48px;}
 .risk-severity.sev-org{background:var(--org);}
 .risk-severity.sev-amb{background:var(--amb);}
 .risk-sev-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--wht);}
-.risk-sev-icon{font-size:22px;margin-bottom:4px;}
+.risk-sev-icon{margin-bottom:6px;color:#fff;}
+.risk-sev-icon svg{width:24px;height:24px;}
 .risk-body{flex:1;background:var(--g1);padding:20px 28px;border-left:none;}
 .risk-rtitle{font-size:14px;font-weight:600;margin-bottom:4px;}
 .risk-rdesc{font-size:13px;color:var(--g5);line-height:1.6;}
@@ -177,7 +180,8 @@ section{padding:80px 48px;}
 .impact-sub{font-size:12px;color:#444;margin-top:6px;}
 .capabilities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
 .cap-card{background:#0D0D0D;padding:28px 24px;}
-.cap-icon{font-size:24px;margin-bottom:14px;}
+.cap-icon{margin-bottom:18px;color:var(--p);display:inline-block;}
+.cap-icon svg{width:28px;height:28px;}
 .cap-title{font-size:14px;font-weight:600;color:var(--wht);margin-bottom:8px;}
 .cap-desc{font-size:13px;color:#555;line-height:1.6;}
 
@@ -272,28 +276,28 @@ footer{background:#000;border-top:3px solid var(--p);padding:40px 48px;}
     <div class="challenge-grid">
       <div class="challenge-list fade-in">
         <div class="challenge-item">
-          <div class="ch-icon">⏱</div>
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></div>
           <div>
             <div class="ch-title">3 a 5 días de análisis manual</div>
             <div class="ch-desc">Un equipo de analistas financieros necesita días para procesar un earnings report de 22 páginas, construir comparativos, detectar riesgos y preparar el brief ejecutivo.</div>
           </div>
         </div>
         <div class="challenge-item">
-          <div class="ch-icon">👥</div>
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3.5"/><path d="M2 21c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="7" r="2.5"/><path d="M16 13.5c3 .3 5 2.3 5 5"/></svg></div>
           <div>
             <div class="ch-title">Múltiples analistas involucrados</div>
             <div class="ch-desc">El análisis requiere coordinación entre finanzas, estrategia e inversiones. Riesgo de inconsistencias y pérdida de contexto entre áreas.</div>
           </div>
         </div>
         <div class="challenge-item">
-          <div class="ch-icon">📊</div>
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8M9 21V4M15 21v-9M21 21V11M2 21h20"/></svg></div>
           <div>
             <div class="ch-title">Cobertura parcial e inconsistente</div>
             <div class="ch-desc">Con el tiempo limitado, el análisis raramente cubre los 10 ejes necesarios para una decisión informada: P&amp;L, cash flow, balance, KPIs, riesgos, segmentos y más.</div>
           </div>
         </div>
         <div class="challenge-item">
-          <div class="ch-icon">⚠</div>
+          <div class="ch-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 18v.5" stroke-linecap="round"/></svg></div>
           <div>
             <div class="ch-title">Riesgos que se escapan</div>
             <div class="ch-desc">En análisis acelerados, señales débiles como reclasificaciones contables, cambios en segmentos de reporte o deterioro del below-the-line suelen pasar desapercibidas.</div>
@@ -504,39 +508,39 @@ footer{background:#000;border-top:3px solid var(--p);padding:40px 48px;}
     <p class="risks-sub fade-in">La IA identificó 9 riesgos organizados por severidad e impacto esperado</p>
     <div class="risks-grid fade-in">
       <div class="risk-item">
-        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-severity sev-red"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 18v.5" stroke-linecap="round"/></svg></div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
         <div class="risk-body"><div class="risk-rtitle">Net income subyacente colapsó −36.4%</div><div class="risk-rdesc">Excluido el one-time de BradyPLUS/Imperial Dade (~Ps.11,951M), el beneficio neto cae dramáticamente. La ganancia reportada de +97.3% es una ilusión contable. El mercado debe aislar este impacto.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-severity sev-red"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 18v.5" stroke-linecap="round"/></svg></div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
         <div class="risk-body"><div class="risk-rtitle">Gastos financieros netos triplicados (+242.6%)</div><div class="risk-rdesc">Interest expense neto subió de Ps.3,046M a Ps.4,296M. Pérdida por FX de Ps.444M vs ganancia de Ps.439M el año anterior. El income por intereses cayó −45% por menor caja y menores tasas.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-red"><div class="risk-sev-icon">&#9888;</div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
+        <div class="risk-severity sev-red"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 18v.5" stroke-linecap="round"/></svg></div><div class="risk-sev-label">Rojo<br>Inmediato</div></div>
         <div class="risk-body"><div class="risk-rtitle">Health México: reestructuración sin fondo visible</div><div class="risk-rdesc">335 cierres de tiendas en LTM en México. Gross margin −320 bps. Salida del contrato PBS con EPS Sanitas en Colombia (expira sept-26) elimina un flujo relevante de revenue institucional.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-severity sev-org"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,4 21,20 3,20"/></svg></div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
         <div class="risk-body"><div class="risk-rtitle">Leverage duplicado: ND/EBITDA de 0.69x a 1.24x</div><div class="risk-rdesc">Ps.47,218M en dividendos + Ps.16,055M en recompras en 12 meses generaron el deterioro. El ratio es manejable pero el ritmo de deterioro (+0.55x en un año) es lo preocupante si continúa.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-severity sev-org"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,4 21,20 3,20"/></svg></div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
         <div class="risk-body"><div class="risk-rtitle">CAPEX reducido puede comprometer crecimiento futuro</div><div class="risk-rdesc">Aperturas OXXO México cayeron 56% YoY (158 vs 361). CAPEX total −29.5%. Una desaceleración sostenida sacrificaría market share en el mediano plazo ante competidores más agresivos.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-org"><div class="risk-sev-icon">&#9651;</div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
+        <div class="risk-severity sev-org"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,4 21,20 3,20"/></svg></div><div class="risk-sev-label">Naranja<br>Estructural</div></div>
         <div class="risk-body"><div class="risk-rtitle">KOF México: pérdida de volumen en mercado core</div><div class="risk-rdesc">Volumen México + Centroamérica cayó −1.6%. KOF representa el 34% de revenues consolidados. Una recaída sostenida es altamente material para los dividendos que sostienen el ex-KOF EBITDA.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
         <div class="risk-body"><div class="risk-rtitle">Reclasificación contable en Europa y Health</div><div class="risk-rdesc">Distribución migrada de SG&amp;A a COGS distorsiona comparabilidad del gross margin. Solo se refleja en 1Q26, no en 1Q25. Añade complejidad al análisis y puede extenderse a otros segmentos.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
         <div class="risk-body"><div class="risk-rtitle">Europa: tráfico débil y SSS negativo en Alemania</div><div class="risk-rdesc">SSS reportado −2.7% (comparable −0.2%). Alemania muestra debilidad en B2B y tráfico. Suiza compensa, pero un deterioro del consumo europeo impactaría los Ps.1,804M de EBITDA del segmento.</div></div>
       </div>
       <div class="risk-item">
-        <div class="risk-severity sev-amb"><div class="risk-sev-icon">&#9711;</div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
+        <div class="risk-severity sev-amb"><div class="risk-sev-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg></div><div class="risk-sev-label">Amarillo<br>Latente</div></div>
         <div class="risk-body"><div class="risk-rtitle">Macroentorno internacional complejo</div><div class="risk-rdesc">MXN apreciado genera headwind de FX de ~230 bps en revenues. Argentina con inflación LTM 32.8%. Volatilidad cambiaria puede amplificarse dado el contexto global de aranceles y política monetaria.</div></div>
       </div>
     </div>
@@ -601,32 +605,32 @@ footer{background:#000;border-top:3px solid var(--p);padding:40px 48px;}
 
     <div class="capabilities-grid fade-in">
       <div class="cap-card">
-        <div class="cap-icon">&#128200;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-9"/><path d="M14 6h7v7"/></svg></div>
         <div class="cap-title">Análisis de earnings en tiempo real</div>
         <div class="cap-desc">Procesa cualquier earnings release el mismo día de publicación. Tu equipo llega al earnings call con preguntas ya formuladas.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">&#127919;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
         <div class="cap-title">Detección de riesgos ocultos</div>
         <div class="cap-desc">Identifica reclasificaciones contables, one-time items, cambios metodológicos y señales débiles que el análisis apresurado omite.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">&#128203;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6M9 13h7M9 17h5"/></svg></div>
         <div class="cap-title">Briefs listos para el Board</div>
         <div class="cap-desc">Output estructurado con semáforos, tablas comparativas, veredicto ejecutivo y preguntas para management — listo para presentar.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">&#127758;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></div>
         <div class="cap-title">Cobertura multi-segmento y multi-geo</div>
         <div class="cap-desc">Analiza simultáneamente 5 segmentos de negocio en 18 países con exposición a 8 monedas — sin perder el hilo narrativo.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">&#9889;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
         <div class="cap-title">Escalable a cualquier empresa</div>
         <div class="cap-desc">El mismo framework de prompt funciona para cualquier large-cap. Adaptable a diferentes sectores, geografías y marcos contables.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">&#128101;</div>
+        <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="5" cy="9" r="2"/><circle cx="19" cy="9" r="2"/></svg></div>
         <div class="cap-title">Democratiza el expertise de CFO</div>
         <div class="cap-desc">Equipos sin analistas senior pueden acceder al mismo nivel de rigor analítico. La IA actúa como el experto que no siempre está disponible.</div>
       </div>
@@ -690,5 +694,6 @@ const obs = new IntersectionObserver(entries=>{
 },{threshold:0.12});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 </script>
+<script src="enhancements.js"></script>
 </body>
 </html>
